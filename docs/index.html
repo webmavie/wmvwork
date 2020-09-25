@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>WMVWork / WebMaVie yazılım tarafından hazırlanan php framework</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper" >
+      <div class="sidebar-heading">WMVWork </div>
+      <div class="list-group list-group-flush">
+        <a href="#baslarken" class="list-group-item list-group-item-action bg-light">Başlarken</a>
+        <a href="#kurulum" class="list-group-item list-group-item-action bg-light">Kurulum</a>
+        <a href="#nasilcalisir" class="list-group-item list-group-item-action bg-light">Nasıl çalışır?</a>
+        <a href="#kodlar" class="list-group-item list-group-item-action bg-light">Önemli kodlar</a>
+        <a href="#veritabaniislemleri" class="list-group-item list-group-item-action bg-light">Veritabanı işlemleri</a>
+        <a href="#fonksiyonlar" class="list-group-item list-group-item-action bg-light">Fonksiyonlar</a>
+        <a href="#yonlendiriciler" class="list-group-item list-group-item-action bg-light">Yönlendiriciler(Routers)</a>
+        <a href="#degiskenler" class="list-group-item list-group-item-action bg-light">Değişkenler(Variables)</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">X</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Versiyon: 2.0 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://webmavie.xyz/wmvwork/download">Güncellemelere göz at / Indir</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" href="https://webmavie.xyz">WebMaVie</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+	  
+		<div id="baslarken">
+			<h1 class="mt-4">Hoş geldiniz!</h1>
+			<p>Merhaba. Bu WebMaVie yazılım tarafından hazırlanan ve yazılımlarınızın yazılma süresini azaltan hemde daha güvenli hale getiren yazılımdır.</p>
+			<hr/>
+		</div>
+		
+		<div id="kurulum">
+			<h1 class="mt-4">Kurulum</h1>
+			<p>Kurulum çok basitdir. İndirdiğiniz arşivin içeriğindeki kendi sunucunuza aktarınız. Daha sonra <b>wmv_core/</b> içerisindeki <b>config.php</b> dosyasını düzenleyiniz.</p>
+			<p>
+				<code>DEFINE("SITE_URL", "")</code> - Sitenizin adresinizi https veya httpyle yazınız. Boş bırakırsanız yazılım kendi bulur <br>
+				<code>DEFINE("DEFAULT_INDEX", "merhaba.php")</code> - Varsayılan dizin sayfası (ps.: wmv_view klasöründe) <br>
+				<code>DEFINE("ERROR_PAGE", "_hata.php")</code>  - Varsayılan 404 hata sayfası (ps.: wmv_view klasöründe) <br><br>
+				
+				<code>DEFINE("DB_HOST", "")</code> - Veritabanı sunucusu - Eğer boş bırakırsanız veritabanı kapatılır. <br>
+				<code>DEFINE("DB_USER", "")</code> - Veritabanı kullanıcısı <br>
+				<code>DEFINE("DB_PASS", "")</code> - Veritabanı şifresi <br>
+				<code>DEFINE("DB_NAME", "")</code> - Veritabanı ismi <br>
+				<code>DEFINE("DB_PREFİX", "")</code> - Eğer ön ek varsa kullanıla bilir
+			</p>
+			<hr/>
+		</div>
+		
+		<div id="nasilcalisir">
+			<h1 class="mt-4">Nasıl çalışır?</h1>
+			<p>Kurulum tamamlandıysa ve karşınıza selamlama ekranı geliyorsa yazılım kurulmuştur.</p>
+			<p>Yazılımın tüm görünüm dosyaları <b>wmv_view/</b> klasöründe, tüm css, js ve diger tasarım dosyaları <b>wmv_dist/</b> klasöründe</p>, tüm kullanıcının yüklediği dosyalar <b>wmv_upload/</b> klasöründe tutulucak. Tabi bunlar config.php dosyasından değiştirile bilir. Ama <b>önerilmez!</b>
+			<p>Az önce söylediğim gibi tüm görünüm dosyaları <b>wmv_view/</b> klasöründe. <b>merhaba.php</b>den sonrada ikinci sayfayı açmak için burayı kullanıcağız. Site adres olarak klasörü şöyle görücek: <br> 
+			<b>https://example.com/benimsite</b> yani <b>wmv_view/</b> klasöründe <b>benimsite.php</b> dosyasını oku</p><br>
+			<b>https://example.com/benimklasor/digersayfa</b> yani <b>wmv_view/</b> klasöründe <b>benimklasor/</b> adlı alt klasöründe <b>digersayfa.php</b> dosyasını oku <br>
+			Ve bu böyle ne kadar isterseniz devam ede bilir. Peki header footer gibi dosyaları include(require) etmek istiyoruz hemde site adresinde dosya ismini girdiğimizde o dosya açılmasın. Bunun içinde include(require) edilecek dosyanın adının başına <b>_</b> şu karakteri koyunuz. <br> Mesela: <b>_header.php</b> veya <b>_footer.php</b> gibi . Eğer bu dosyalara site üzerinden erişmek istersek sitede hata sayfasını gösterir.
+			</p>
+			
+			<hr/>
+		</div>
+		
+		<div id="kodlar">
+			<h1 class="mt-4">Kodlar</h1>
+			<p>
+				Sayfaya direkt erişimi engellemek için wmv_view/ içerisinde oluşturduğunuz tüm dosyalarda php tagı arasında sayfa başına şu kodu ekleyiniz.<br>
+				<code>if(basename($_SERVER['PHP_SELF'])==basename(__FILE__)){ exit('No direct script access allowed');}</code>
+				<hr>
+				<code>echo base_url(); //SONUC: https://example.com/</code> - Site urlnizi gösterir. Site üzerinde bir dosyaya yol vermek için parantez arasına almanız yeterlidir. <br>Örnek: <code>echo base_url("/sayfaadresi/sayfa"); // SONUC: https://example.com/sayfaadresi/sayfa</code>
+				<hr>
+				<code>echo dist_url(); //SONUC: https://example.com/wmv_dist/</code> - Site tasarım dosyaları urlnizi gösterir. Tasarımı çekmek için parantez arasına almanız yeterlidir. <br>Örnek: <code>echo dist_url("/tasarimklasoru/stil.css"); // SONUC: https://example.com/wmv_dist/tasarimklasoru/stil.css</code>
+				<hr>
+				<code>echo upload_url(); //SONUC: https://example.com/wmv_upload/</code> - Kullanıcı yüklediği dosyalara erişmek için kullanılır. Dosya adresi için parantez arasına yazmanız yeterlidir. <br>Örnek: <code>echo upload_url("profilresmi.jpg"); // SONUC: https://example.com/wmv_upload/profilresmi.jpg</code>
+				<hr>
+				<code>echo upload_dir(); //SONUC: public_html/wmv_upload/</code> - Kullanıcı dosyayı yüklerse nereye gideceğini belirler. dosya ismini belirlemek için parantez içersine dosyanın ismini yazınız. <br>Örnek: <code>echo upload_dir("yeniresim.jpg"); // SONUC: public_html/wmv_upload/yeniresim.jpg</code>
+				<hr>
+				<code>echo action_url(); //SONUC: https://example.com/wmv_core/action.php</code> - Kullanıcı tarafından yapılan tüm işlemler. (Veritabanı, Upload ve s. gibi işlemler) bu dosyada yapılıcak. Genellikde post verisi gönderilir. Ama get verisi gönderilirse kullanımı.<br>
+				<code>$getdata=array(
+					"form" => "kayitol",
+					"where" => "anasayfa"
+				);</code> - Array yapısı kullanılır.<br>
+				<code>echo action_url($getdata);</code> - ve action_urla değişken dahil edilir.
+				<hr>
+			</p>
+		</div>
+		
+		<div id="veritabaniislemleri">
+			<h1 class="mt-4">Veritabanı işlemleri</h1>
+			<p>
+				<code>echo $db->get_onerow(-tablo-, -nereden-);</code> - Veritabanından tek bir sütun çekmek için kullanılır. <br>
+				Örnek: <br>
+				<code>$nereden=array(
+					"eposta" => "deneme@email.com",
+					"sifre" => "123456"
+				);</code> - Nereden yani where için array yapısı kullanilir<br>
+				<code>echo $db->get_onerow("kullanicilar", $nereden);</code>  - eğer veriler doğruysa fonksiyon tek bir sütunu döndürür.
+				<hr>
+				<code>echo $db->get_allrow(-tablo-, -nereden-, -listele-, -ASCveyaDESC-);</code> - Veritabanından toplu veri çekmek için kullanılır <br>
+				Örnek: <br>
+				<code>$nereden=array(
+					"ulke" => "Azerbaycan",
+					"sehir" => "Baku"
+				);</code> - Nereden yani where için array yapısı kullanilir. Boş bırakıla bilir.Order kullanılıcaksa ve bu boş bırakılıcaksa 'no' yazılır. <br>
+				<code>$orderby="sehir";</code> - Neye göre listeleneceğini seçer. Boş bırakıla bilir <br>
+				<code>$list="DESC";</code> - Nasıl listeleneceğini seçer. Boş bırakıla bilir. Varsayılan olarak <b>ASC</b> <br>
+				<code>echo $db->get_allrow("kullanicilar", $nereden, $orderby, $list);</code>  - eğer veriler doğruysa fonksiyon verilere göre uyan tüm sütunları döndürür.
+				<hr>
+				<code>echo $db->add_row(-tablo-, -veriler-);</code> - Veritabanıa veri eklemek için kullanılır. <br>
+				Örnek: <br>
+				<code>$veriler=array(
+					"isim" => "Şahin",
+					"soyisim" => "Muxtarlı"
+				);</code> - Hangi verilerin eklenecegini array olarak giriniz
+				<br><code>echo $db->get_onerow("kullanicilar", $veriler);</code>  - eğer veriler doğruysa fonksiyon 1 döndürür ve verileri veitabanına ekler.
+				<hr>
+				<code>echo $db->delete_row(-tablo-, -nereden-);</code> - Veritabanından sütun silmek için kullanılır. <br>
+				Örnek: <br>
+				<code>$nereden=array(
+					"id" => "25"
+				);</code> - Nereden yani where için array yapısı kullanilir<br>
+				<code>echo $db->delete_row("kullanicilar", $nereden);</code> - eğer veriler doğruysa fonksiyon 1 döndürür. 
+				<hr>
+				<code>echo $db->update_row(-tablo-, -nereden-, -veri-);</code> - Veritabanından sütun güncellemek için kullanılır. <br>
+				Örnek: <br>
+				<code>$nereden=array(
+					"isim" => "Murat"
+				);</code> - Nereden yani where için array yapısı kullanilir
+				<br>
+				<code>$veri=array(
+					"isim" => "Serdar"
+				);</code> - Veri için array yapısı kullanilir
+				<br>
+				<code>echo $db->update_row("kullanicilar", $nereden, $veri);</code> - eğer veriler doğruysa fonksiyon 1 döndürür ve verileri veri tabanında günceller
+				<hr>
+			</p>
+			<hr/>
+		</div>
+
+		<div id="fonksiyonlar">
+			<h1 class="mt-4">Fonksiyonlar</h1>
+			<p>Fonksiyonlar proje yapımı zamanı size kolaylık sağlayacak olan fonksiyonları yazıp tüm sayfalarda kullanmak için kullanılır. Kullanmak için <b>wmv_core/</b> klasöründe <b>functions.php</b> dosyasını açınız.</p>
+			<hr/>
+		</div>
+
+		<div id="yonlendiriciler">
+			<h1 class="mt-4">Yönlendiriciler (Routers)</h1>
+			<p>Yönlendiriciler sayfanın adresini kullanıcıya başka şekilde görünmesini sağlar. Kullanmak için <b>wmv_core/</b> klasöründe <b>routers.php</b> dosyasını açınız.</p>
+			<p>Array yapısı arasına key değeri olarak kullanıcıya görünen kısmı , value değeri olarak klasör veya dosya ismi yazınız.</p>
+			<p>Örnek olarak: </p>
+			<p><code>
+				$routers=array(<br>
+					&nbsp&nbsp&nbsp "giris" => "login"<br>
+				);
+			</code> <br> <br> 
+			Bunu yaptiktan sonra <b>https://siteadresi.com/giris</b> yazarsak <b>wmv_view/</b> klasöründe <b>giris.php</b> değilde <b>login.php</b> dosyasını okur.</p>
+			
+			<hr/>
+		</div>
+
+		<div id="degiskenler">
+			<h1 class="mt-4">Değişkenler (Variables)</h1>
+			<p>Değişkenler proje yapımı zamanı sabit tüm sayfalarda kullanılıcak veriler yazılır. Kullanmak için <b>wmv_core/</b> klasöründe <b>variables.php</b> dosyasını açınız.</p>
+			<p>Örnek olarak:</p>
+			<p><code>$option=$db->get_onerow("options", array("id" => 1));</code></p>
+			<p>Şimdi buradakı <b>$option</b> değişkenini tüm sayfalarda kullana biliriz.</p>
+			<hr/>
+		</div>
+		
+      </div> 
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
