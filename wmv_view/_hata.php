@@ -17,7 +17,7 @@
         Saygılarla <a href="https://webmavie.xyz/">WebMaVie</a>
     </div>
     <div class="left">
-        <b>Versiyon: 2.0</b>
+        <b>Versiyon: 2.1</b>
     </div>
 </div>
 

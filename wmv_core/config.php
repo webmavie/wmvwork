@@ -11,6 +11,11 @@ DEFINE("DB_PASS", "");
 DEFINE("DB_NAME", "");
 DEFINE("DB_PERFIX", "");
 
+DEFINE("SMTP_HOST", "");
+DEFINE("SMTP_USERNAME", "");
+DEFINE("SMTP_PASSWORD", "");
+DEFINE("SMTP_SENDER", "");
+
 DEFINE("DEFAULT_LANGUAGE", "tr");
 
 // DEĞİŞİKLİK YAPILMASI ÖNERİLMİYOR
@@ -23,20 +28,27 @@ DEFINE("ERROR_WORD", "<b>I don't find default view files!</b><br/>Default index 
 
 // DOKUNMAYINIZ
 
+header('Content-Type: text/html; charset=utf-8');
+
 require_once("class/pdo.class.php");
+require_once("class/wmvsmtp.class.php");
+
+// ini_set('display_errors', '0');
+// ini_set('display_startup_errors', '0');
+// error_reporting(0);
 
 if (DB_HOST!==""){
     $db=new wmvpdo(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PERFIX);
 }
 
-
-// ÖNEMLİ FONKSİYONLAR
+if (SMTP_HOST!==""){
+    $mail=new wmvsmtp(SMTP_HOST, SMTP_USERNAME, SMTP_PASSWORD, SMTP_SENDER);
+}
 
 function base_url($adress=""){
     $adress=ltrim($adress, '/');
     if (SITE_URL == "") {
-        $findsiteurl=sprintf("%s://%s", isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http', $_SERVER['SERVER_NAME']);
-        return rtrim($findsiteurl, '/').'/'.$adress;
+        return rtrim(url(), '/').'/'.$adress;
     }else {
         return rtrim(SITE_URL, '/').'/'.$adress;
     }   
@@ -61,6 +73,15 @@ function upload_url($upload=""){
 function upload_dir($filename=""){
     $fullpath=str_replace(trim(" \ "), "/", dirname(__DIR__));
     return $fullpath.'/'.trim(UPLOAD_FOLDER, "/")."/".$filename;
+}
+
+
+function url(){
+  return sprintf(
+    "%s://%s",
+    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+    $_SERVER['SERVER_NAME']
+  );
 }
 
 
