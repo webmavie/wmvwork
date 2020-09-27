@@ -141,4 +141,103 @@
 			<h1 class="mt-4">Veritabanı işlemleri</h1>
 			<p>
 				<code>echo $db->get_onerow(-tablo-, -nereden-);</code> - Veritabanından tek bir sütun çekmek için kullanılır. <br>
-				
+				Örnek: <br>
+				<code>$nereden=array(
+					"eposta" => "deneme@email.com",
+					"sifre" => "123456"
+				);</code> - Nereden yani where için array yapısı kullanilir<br>
+				<code>echo $db->get_onerow("kullanicilar", $nereden);</code>  - eğer veriler doğruysa fonksiyon tek bir sütunu döndürür.
+				<hr>
+				<code>echo $db->get_allrow(-tablo-, -nereden-, -listele-, -ASCveyaDESC-);</code> - Veritabanından toplu veri çekmek için kullanılır <br>
+				Örnek: <br>
+				<code>$nereden=array(
+					"ulke" => "Azerbaycan",
+					"sehir" => "Baku"
+				);</code> - Nereden yani where için array yapısı kullanilir. Boş bırakıla bilir.Order kullanılıcaksa ve bu boş bırakılıcaksa 'no' yazılır. <br>
+				<code>$orderby="sehir";</code> - Neye göre listeleneceğini seçer. Boş bırakıla bilir <br>
+				<code>$list="DESC";</code> - Nasıl listeleneceğini seçer. Boş bırakıla bilir. Varsayılan olarak <b>ASC</b> <br>
+				<code>echo $db->get_allrow("kullanicilar", $nereden, $orderby, $list);</code>  - eğer veriler doğruysa fonksiyon verilere göre uyan tüm sütunları döndürür.
+				<hr>
+				<code>echo $db->add_row(-tablo-, -veriler-);</code> - Veritabanıa veri eklemek için kullanılır. <br>
+				Örnek: <br>
+				<code>$veriler=array(
+					"isim" => "Şahin",
+					"soyisim" => "Muxtarlı"
+				);</code> - Hangi verilerin eklenecegini array olarak giriniz
+				<br><code>echo $db->get_onerow("kullanicilar", $veriler);</code>  - eğer veriler doğruysa fonksiyon 1 döndürür ve verileri veitabanına ekler.
+				<hr>
+				<code>echo $db->delete_row(-tablo-, -nereden-);</code> - Veritabanından sütun silmek için kullanılır. <br>
+				Örnek: <br>
+				<code>$nereden=array(
+					"id" => "25"
+				);</code> - Nereden yani where için array yapısı kullanilir<br>
+				<code>echo $db->delete_row("kullanicilar", $nereden);</code> - eğer veriler doğruysa fonksiyon 1 döndürür. 
+				<hr>
+				<code>echo $db->update_row(-tablo-, -nereden-, -veri-);</code> - Veritabanından sütun güncellemek için kullanılır. <br>
+				Örnek: <br>
+				<code>$nereden=array(
+					"isim" => "Murat"
+				);</code> - Nereden yani where için array yapısı kullanilir
+				<br>
+				<code>$veri=array(
+					"isim" => "Serdar"
+				);</code> - Veri için array yapısı kullanilir
+				<br>
+				<code>echo $db->update_row("kullanicilar", $nereden, $veri);</code> - eğer veriler doğruysa fonksiyon 1 döndürür ve verileri veri tabanında günceller
+				<hr>
+			</p>
+			<hr/>
+		</div>
+
+		<div id="fonksiyonlar">
+			<h1 class="mt-4">Fonksiyonlar</h1>
+			<p>Fonksiyonlar proje yapımı zamanı size kolaylık sağlayacak olan fonksiyonları yazıp tüm sayfalarda kullanmak için kullanılır. Kullanmak için <b>wmv_core/</b> klasöründe <b>functions.php</b> dosyasını açınız.</p>
+			<hr/>
+		</div>
+
+		<div id="yonlendiriciler">
+			<h1 class="mt-4">Yönlendiriciler (Routers)</h1>
+			<p>Yönlendiriciler sayfanın adresini kullanıcıya başka şekilde görünmesini sağlar. Kullanmak için <b>wmv_core/</b> klasöründe <b>routers.php</b> dosyasını açınız.</p>
+			<p>Array yapısı arasına key değeri olarak kullanıcıya görünen kısmı , value değeri olarak klasör veya dosya ismi yazınız.</p>
+			<p>Örnek olarak: </p>
+			<p><code>
+				$routers=array(<br>
+					&nbsp&nbsp&nbsp "giris" => "login"<br>
+				);
+			</code> <br> <br> 
+			Bunu yaptiktan sonra <b>https://siteadresi.com/giris</b> yazarsak <b>wmv_view/</b> klasöründe <b>giris.php</b> değilde <b>login.php</b> dosyasını okur.</p>
+			
+			<hr/>
+		</div>
+
+		<div id="degiskenler">
+			<h1 class="mt-4">Değişkenler (Variables)</h1>
+			<p>Değişkenler proje yapımı zamanı sabit tüm sayfalarda kullanılıcak veriler yazılır. Kullanmak için <b>wmv_core/</b> klasöründe <b>variables.php</b> dosyasını açınız.</p>
+			<p>Örnek olarak:</p>
+			<p><code>$option=$db->get_onerow("options", array("id" => 1));</code></p>
+			<p>Şimdi buradakı <b>$option</b> değişkenini tüm sayfalarda kullana biliriz.</p>
+			<hr/>
+		</div>
+		
+      </div> 
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
