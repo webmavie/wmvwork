@@ -22,8 +22,13 @@
 
   <div class="d-flex" id="wrapper">
 
+  	<style type="text/css">
+  		.mysidebar {
+  		}
+  	</style>
+
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper" >
+    <div class="bg-light border-right mysidebar" id="sidebar-wrapper">
       <div class="sidebar-heading">WMVWork </div>
       <div class="list-group list-group-flush">
         <a href="#baslarken" class="list-group-item list-group-item-action bg-light">Başlarken</a>
@@ -53,7 +58,7 @@
               <a class="nav-link" href="#">Versiyon: 2.0 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://github.com/webmavie/wmvwork/">Güncellemelere göz at / Indir</a>
+              <a class="nav-link" href="https://webmavie.xyz/wmvwork/download">Güncellemelere göz at / Indir</a>
             </li>
 			<li class="nav-item">
               <a class="nav-link" href="https://webmavie.xyz">WebMaVie</a>
@@ -62,7 +67,7 @@
         </div>
       </nav>
 
-      <div class="container-fluid">
+      <div class="container-fluid" style="">
 	  
 		<div id="baslarken">
 			<h1 class="mt-4">Hoş geldiniz!</h1>
@@ -82,7 +87,12 @@
 				<code>DEFINE("DB_USER", "")</code> - Veritabanı kullanıcısı <br>
 				<code>DEFINE("DB_PASS", "")</code> - Veritabanı şifresi <br>
 				<code>DEFINE("DB_NAME", "")</code> - Veritabanı ismi <br>
-				<code>DEFINE("DB_PREFİX", "")</code> - Eğer ön ek varsa kullanıla bilir
+				<code>DEFINE("DB_PREFİX", "")</code> - Eğer ön ek varsa kullanıla bilir <br><br>
+
+				<code>DEFINE("SMTP_HOST", "")</code> - SMTP sunucusu - Eğer boş bırakırsanız SMTP kullanılmaz. <br>
+				<code>DEFINE("SMTP_USERNAME", "")</code> - SMTP kullanıcısı <br>
+				<code>DEFINE("SMTP_PASSWORD", "")</code> - SMTP şifresi <br>
+				<code>DEFINE("SMTP_SENDER", "")</code> - SMTP gönderen ismi (veya eposta adresi) boş bırakılırsa NO REPLY yazılır.
 			</p>
 			<hr/>
 		</div>
@@ -120,6 +130,9 @@
 					"where" => "anasayfa"
 				);</code> - Array yapısı kullanılır.<br>
 				<code>echo action_url($getdata);</code> - ve action_urla değişken dahil edilir.
+				<hr>
+				<p>SMTP aktivse bu şekilde kullanılıyor.</p><br>
+				<code>$mail->send("Alıcı e-posta", "E-posta başlığı", "E-posta içeriği (HTML kullanıla bilir)");</code>
 				<hr>
 			</p>
 		</div>
