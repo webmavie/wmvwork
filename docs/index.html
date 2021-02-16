@@ -55,13 +55,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Versiyon: 2.1 <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#">Versiyon: 2.5 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://webmavie.xyz/wmvwork/download">Güncellemelere göz at / Indir</a>
+              <a class="nav-link" href="https://github.com/webmavie/wmvwork">Güncellemelere göz at / Indir</a>
             </li>
 			<li class="nav-item">
-              <a class="nav-link" href="https://webmavie.xyz">WebMaVie</a>
+              <a class="nav-link" href="https://instagram.com/webmavie">WebMaVie</a>
             </li>
           </ul>
         </div>
@@ -92,7 +92,10 @@
 				<code>DEFINE("SMTP_HOST", "")</code> - SMTP sunucusu - Eğer boş bırakırsanız SMTP kullanılmaz. <br>
 				<code>DEFINE("SMTP_USERNAME", "")</code> - SMTP kullanıcısı <br>
 				<code>DEFINE("SMTP_PASSWORD", "")</code> - SMTP şifresi <br>
-				<code>DEFINE("SMTP_SENDER", "")</code> - SMTP gönderen ismi (veya eposta adresi) boş bırakılırsa NO REPLY yazılır.
+				<code>DEFINE("SMTP_SENDER", "")</code> - SMTP gönderen ismi (veya eposta adresi) boş bırakılırsa NO REPLY yazılır.<br><br>
+
+				<code>DEFINE("SHOW_PHP_ERRORS", 1)</code> - Hataları gösterme - 0 - etkin değil, 1 - sadece önemli hatalar , -1 - Tüm hatalar<br>
+				<code>DEFINE("SESSION_START", FALSE)</code> - Projenizde session kullanıcaksanız buna <code>TRUE</code> değeri atayın<br>
 			</p>
 			<hr/>
 		</div>
@@ -113,10 +116,14 @@
 		<div id="kodlar">
 			<h1 class="mt-4">Kodlar</h1>
 			<p>
-				Sayfaya direkt erişimi engellemek için wmv_view/ içerisinde oluşturduğunuz tüm dosyalarda php tagı arasında sayfa başına şu kodu ekleyiniz.<br>
-				<code>if(basename($_SERVER['PHP_SELF'])==basename(__FILE__)){ exit('No direct script access allowed');}</code>
+				Sayfaya direkt erişimi engellemek için wmv_view/ içerisinde oluşturduğunuz tüm dosyalarda php tagı arasında sayfa başına şu kodu ekleyiniz.
+				<br><code>if(basename($_SERVER['PHP_SELF'])==basename(__FILE__)){ exit('No direct script access allowed');}</code>
 				<hr>
-				<code>echo base_url(); //SONUC: https://example.com/</code> - Site urlnizi gösterir. Site üzerinde bir dosyaya yol vermek için parantez arasına almanız yeterlidir. <br>Örnek: <code>echo base_url("/sayfaadresi/sayfa"); // SONUC: https://example.com/sayfaadresi/sayfa</code>
+				<code>echo base_url(); //SONUC: https://example.com/</code> - Site urlnizi gösterir. Site üzerinde bir dosyaya yol vermek için parantez arasına almanız yeterlidir. 
+				<br>Örnek: <code>echo base_url("/sayfaadresi/sayfa"); // SONUC: https://example.com/sayfaadresi/sayfa</code>
+				<hr>
+				<code>echo this_url(); //SONUC: https://example.com/active_page?get=users</code> - Site kullanılırken hangi sayfada olduğunu gösterir. Tek değer(<code>TRUE</code> ve <code>FALSE</code>) atana bilir ve varsayılan değer <code>FALSE</code> dir.<code>TRUE</code> yapılırsa, örneğe göre <code>?get=users</code> almaz. 
+				<br>Örnek: <code>echo this_url(TRUE); //AKTİF SAYFA: https://example.com/sayfaadresi/sayfa?action=save SONUC: https://example.com/sayfaadresi/sayfa</code>
 				<hr>
 				<code>echo dist_url(); //SONUC: https://example.com/wmv_dist/</code> - Site tasarım dosyaları urlnizi gösterir. Tasarımı çekmek için parantez arasına almanız yeterlidir. <br>Örnek: <code>echo dist_url("/tasarimklasoru/stil.css"); // SONUC: https://example.com/wmv_dist/tasarimklasoru/stil.css</code>
 				<hr>

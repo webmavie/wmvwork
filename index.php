@@ -1,6 +1,7 @@
 <?php
-session_start();
+try{
 require "wmv_core/config.php";
+require "wmv_core/core.php";
 require "wmv_core/functions.php";
 require "wmv_core/variables.php";
 require "wmv_core/routers.php";
@@ -48,4 +49,17 @@ if (empty($request[0]) == FALSE){
 	require $require;
 }
 
+} catch(Error $e) {
+	$error=array(
+		'message' => $e->getMessage(),
+		'line' => $e->getLine(),
+		'file' => $e->getFile(),
+		'include_file' => $e->getTrace()[0]['file'],
+		'include_line' => $e->getTrace()[0]['line'],
+
+	);
+
+	echo '<!DOCTYPE html><html><head><title>Hata!</title><style>body{color:#F0F000;}.content{border: 2px solid #6afc91; background-color: #fc8f6a; padding:50px; width: 700px; margin: auto;}.bigtext{display: flex; /* or inline-flex */ align-items: center; justify-content: center; font-size: 2em; font-weight: bold; padding:10px;}.right{float: right;}</style></head><body><div class="content"><div class="bigtext">HATA!</div>Hata mesajı:<b style="color:#FFF;"> '.$error['message'].'</b><br/><br/> Satır: <b style="color:#FFF;">'.$error['line'].'</b> | Dosya: <b style="color:#FFF;">'.$error['file'].'</b> <hr/> <div class="right"> Satır: <b style="color:#FFF;">'.$error['include_line'].'</b> </div><div class="left"> Nereden dahil edildi: <b style="color:#FFF;">'.$error['include_file'].'</b> </div></div></body></html>';
+	exit;
+}
 ?>

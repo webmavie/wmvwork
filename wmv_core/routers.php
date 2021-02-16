@@ -2,12 +2,11 @@
 /*
 	"wmv_admin" => "wmv_admin/main",
 
-	Exp.: https://example.com/wmv_admin => show wmv_admin folder in main.php
+	Okunuş: https://example.com/wmv_admin => wmv_admin klasörü içindeki main.php dosyasını oku
 */
 
-
-	$routers=array(
-		
-	);
+$routers=array(
+	//Yönlendiricileri buraya gire bilirsiniz!
+);
 
 ?>
