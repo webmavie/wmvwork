@@ -39,6 +39,7 @@
         <a href="#fonksiyonlar" class="list-group-item list-group-item-action bg-light">Fonksiyonlar</a>
         <a href="#yonlendiriciler" class="list-group-item list-group-item-action bg-light">Yönlendiriciler(Routers)</a>
         <a href="#degiskenler" class="list-group-item list-group-item-action bg-light">Değişkenler(Variables)</a>
+        <a href="#modeller" class="list-group-item list-group-item-action bg-light">Modeller(Models)</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -55,7 +56,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Versiyon: 2.5 <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#">Versiyon: 3 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/webmavie/wmvwork">Güncellemelere göz at / Indir</a>
@@ -130,7 +131,7 @@
 				<code>echo upload_url(); //SONUC: https://example.com/wmv_upload/</code> - Kullanıcı yüklediği dosyalara erişmek için kullanılır. Dosya adresi için parantez arasına yazmanız yeterlidir. <br>Örnek: <code>echo upload_url("profilresmi.jpg"); // SONUC: https://example.com/wmv_upload/profilresmi.jpg</code>
 				<hr>
 				<code>echo upload_dir(); //SONUC: public_html/wmv_upload/</code> - Kullanıcı dosyayı yüklerse nereye gideceğini belirler. dosya ismini belirlemek için parantez içersine dosyanın ismini yazınız. <br>Örnek: <code>echo upload_dir("yeniresim.jpg"); // SONUC: public_html/wmv_upload/yeniresim.jpg</code>
-				<hr>
+				<hr id="action_url">
 				<code>echo action_url(); //SONUC: https://example.com/wmv_core/action.php</code> - Kullanıcı tarafından yapılan tüm işlemler. (Veritabanı, Upload ve s. gibi işlemler) bu dosyada yapılıcak. Genellikde post verisi gönderilir. Ama get verisi gönderilirse kullanımı.<br>
 				<code>$getdata=array(
 					"form" => "kayitol",
@@ -223,6 +224,31 @@
 			<p>Örnek olarak:</p>
 			<p><code>$option=$db->get_onerow("options", array("id" => 1));</code></p>
 			<p>Şimdi buradakı <b>$option</b> değişkenini tüm sayfalarda kullana biliriz.</p>
+			<hr/>
+		</div>
+
+		<div id="modeller">
+			<h1 class="mt-4">Modeller (Models)</h1>
+			<p>Modelleri veritabanını daha hızlı kullana bilmeniz açısından ekledim. Kullanmayada bilirsiniz. Kullanmak için <b>wmv_core/</b> klasöründe <b>models.php</b> dosyasını açınız.</p>
+			<p class="text-danger">!! Önemli: Her fonksiyon içersine bunu eklemelisininiz -> <code>global $db;</code></p>
+			<p><b>Örnek olarak:</b></p>
+			<p>Models.php içeriği:</p>
+			<p><code>function update_user_balance($id, $amount) {<br>
+					&nbsp;	global $db; <br>
+					&nbsp;	$user=$db->get_onerow("users", array("id" => $id)); <br>
+					&nbsp;	$newbalance=$user['balance']+$amount; <br>
+					&nbsp;	$update=$db->update_row("users", array("id" => $user['id']), array("balance" => $newbalance)); <br>
+					&nbsp;	if ($update) { <br>
+					&nbsp;&nbsp;	return 1; <br>
+					&nbsp;	}else { <br>
+					&nbsp;&nbsp;	return 0; <br>
+					&nbsp;	} <br>
+					}</code></p>
+			<p>Action<a href="#action_url">&uarr;</a> (veya görünüm<a href="#nasilcalisir">&uarr;</a>) dosya içeriği</p>
+			<p><code>
+				echo update_user_balance(174, 75);
+			</code></p>
+			<p>Yukardakı işleme göre 1 veya 0 değerini döndürür!</p>
 			<hr/>
 		</div>
 		

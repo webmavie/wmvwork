@@ -3,6 +3,7 @@ try{
 require "wmv_core/config.php";
 require "wmv_core/core.php";
 require "wmv_core/functions.php";
+require "wmv_core/models.php";
 require "wmv_core/variables.php";
 require "wmv_core/routers.php";
 
@@ -24,6 +25,7 @@ $slashcount=count($request)-1;
 
 if (empty($request[0]) == FALSE){
 
+	$slash='';
 	$i=0;
 	foreach ($request as $value) {
 		$endstr=$i==$slashcount?"":"/";
@@ -31,7 +33,11 @@ if (empty($request[0]) == FALSE){
 	$i++;
 	}
 
-	$router=$routers[trim($slash,'/')];
+	try {
+		$router=$routers[trim($slash,'/')];
+	}catch (Exception $e) {
+
+	}
 
 	$slash=empty($router)==FALSE?$router:$slash;
 
@@ -49,7 +55,7 @@ if (empty($request[0]) == FALSE){
 	require $require;
 }
 
-} catch(Error $e) {
+} catch(Throwable $e) {
 	$error=array(
 		'message' => $e->getMessage(),
 		'line' => $e->getLine(),

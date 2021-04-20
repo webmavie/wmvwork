@@ -70,4 +70,8 @@ function url(){
   );
 }
 
+function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+    throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+}
+
 ?>
